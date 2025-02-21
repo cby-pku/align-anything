@@ -320,6 +320,22 @@ class AA_T2T(BaseFormatter):
         ], {}
 
 
+@register_template('MM-Zero-RL-Boyuan')
+class MM_Zero_RL_Boyuan(BaseFormatter):
+    system_prompt: str = ''
+
+    def format_supervised_sample(
+        self, raw_sample: dict[str, Any]
+    ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        prompt = raw_sample['prompt']
+        answer = raw_sample['answer']
+
+        return [
+            {'role': 'user', 'content': [{'type': 'text', 'text': prompt}]},
+            {'role': 'assistant', 'content': [{'type': 'text', 'text': answer}]},
+        ], {}
+
+
 @register_template('TLDR')
 class TLDR(BaseFormatter):
     system_prompt: str = ''

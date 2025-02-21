@@ -1,1 +1,19 @@
-test
+首先要单独支持 remote_rm : models.remote_rm.math_verifier.py
+其次要在单独的 train_ppo 中实现 remote_rm 的版本,
+    如果有 remote_rm 要把 reward_pretrain置为None，把Critic model和pretrain model设置为一样的
+    因为因为critic是给token level value的，所以需要和pretrain model一致
+
+然后要在ppo.py中实现 ppo_trainer.py 中的 NaiveExperienceMaker 和 NaiveReplayBuffer 的 remote_rm 版本
+
+如果有 remote_rm 的情况, 用 remote_rm_fn 代替 reward_model 的推理
+
+当然openrlhf还写了一个remote训练(vllm)的版本
+
+然后实现了正常的访问 
+/aifs4su/yaodong/spring_r1/mm_zero_rl_boyuan/lmm-r1/openrlhf/utils/remote_rm_utils.py
+
+额外的拓展
+Levenshtein
+flask
+latex2sympy2_extended
+math_verify
